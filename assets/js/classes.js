@@ -41,7 +41,7 @@ class LittleMonster extends Character {
     super("Little Monster");
     this.life = 40;
     this.attack = 4;
-    this.defense = 4;
+    this.defense = 6;
     this.maxLife = this.life;
   }
 }
@@ -70,9 +70,8 @@ class Stage {
 
     this.fighter1El
       .querySelector(".attackButton")
-      .addEventListener(
-        "click",
-        () => this.doAttack(this.fighter1, this.fighter2)
+      .addEventListener("click", () =>
+        this.doAttack(this.fighter1, this.fighter2)
       );
     this.fighter2El
       .querySelector(".attackButton")
@@ -100,18 +99,29 @@ class Stage {
   }
 
   doAttack(attacking, attacked) {
+    let actualAttack = 0;
+    let actualDefense = 0;
     // console.log(`${attacking.name} está atacando ${attacked.name}`);
     if (attacking.life <= 0 || attacked.life <= 0) {
       this.Log.addMessage(`morto`);
       return;
     }
-    console.log(`Lado Dado: ${this.rollDice(6)}`)
+    let rollDice = this.rollDice(6);
+    this.Log.addMessage(`Lado Dado: ${rollDice}`);
+    //0 a 2 = dano 0
+    //3 a 5 = dano normal
+    //6 = dano multiplicado.
+
     let attackFactor = (Math.random() * 2).toFixed(2);
     let defenseFactor = (Math.random() * 2).toFixed(2);
 
-    let actualAttack = attacking.attack * attackFactor;
-    let actualDefense = attacking.defense * defenseFactor;
+    if (rollDice >= 3 && rollDice <= 5) {
+      actualAttack = attacking.attack;
+    } else if (rollDice == 6) {
+      actualAttack = attacking.attack * attackFactor * 6;
+    }
 
+    actualDefense = Math.floor(attacked.defense * defenseFactor);
     if (actualAttack > actualDefense) {
       attacked.life -= actualAttack;
       this.Log.addMessage(
@@ -122,16 +132,17 @@ class Stage {
     } else {
       this.Log.addMessage(`${attacked.name} conseguiu defender`);
     }
-    // this.Log.addMessage(
-    //   `${attacking.name} esta atacando com uma força de: ${actualAttack}`
-    // );
+    console.log(
+      `${attacking.name} esta atacando com uma força de: ${actualAttack}`
+    );
 
-    // this.Log.addMessage(
-    //   `${attacked.name} esta defendendo com: ${actualDefense} de defesa`
-    // );
+    console.log(
+      `${attacked.name} esta defendendo com: ${actualDefense} de defesa`
+    );
 
     this.update();
   }
+
   rollDice(lados) {
     return Math.floor(Math.random() * (lados + 1));
   }
@@ -153,7 +164,11 @@ class Log {
     this.listEl.innerHTML = "";
 
     for (let i in this.list) {
-      this.listEl.innerHTML += `<li>${this.list[i]}</li>`;
+      if (this.list[i] === "morto") {
+        this.listEl.innerHTML += `<li style="color: red;">${this.list[i]}</li>`;
+      } else {
+        this.listEl.innerHTML += `<li>${this.list[i]}</li>`;
+      }
     }
   }
 }
