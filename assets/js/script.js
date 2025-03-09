@@ -18,3 +18,5 @@ const stage = new Stage(
 );
 
 stage.start();
+
+// console.log(Math.floor(Math.random() * 7))

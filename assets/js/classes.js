@@ -70,8 +70,9 @@ class Stage {
 
     this.fighter1El
       .querySelector(".attackButton")
-      .addEventListener("click", () =>
-        this.doAttack(this.fighter1, this.fighter2)
+      .addEventListener(
+        "click",
+        () => this.doAttack(this.fighter1, this.fighter2)
       );
     this.fighter2El
       .querySelector(".attackButton")
@@ -104,7 +105,7 @@ class Stage {
       this.Log.addMessage(`morto`);
       return;
     }
-
+    console.log(`Lado Dado: ${this.rollDice(6)}`)
     let attackFactor = (Math.random() * 2).toFixed(2);
     let defenseFactor = (Math.random() * 2).toFixed(2);
 
@@ -131,6 +132,9 @@ class Stage {
 
     this.update();
   }
+  rollDice(lados) {
+    return Math.floor(Math.random() * (lados + 1));
+  }
 }
 
 class Log {
@@ -153,3 +157,5 @@ class Log {
     }
   }
 }
+
+//Tentando colocar um dado, para que cada jogada um dado seja jogado, como um RPG.
