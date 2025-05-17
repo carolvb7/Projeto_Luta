@@ -72,13 +72,14 @@ class Stage {
       .querySelector(".attackButton")
       .addEventListener("click", () =>
         this.doAttack(this.fighter1, this.fighter2)
-        .then(() => this.doAttack(this.fighter2, this.fighter1))
+      .then(() => {
+        if(this.fighter2.life > 0) {
+          return this.doAttack(this.fighter2, this.fighter1);
+        } else {
+          return Promise.resolve();
+        }
+      })
       );
-    // this.fighter2El
-    //   .querySelector(".attackButton")
-    //   .addEventListener("click", () =>
-    //     this.doAttack(this.fighter2, this.fighter1)
-    //   );
   }
 
   update() {
@@ -101,11 +102,14 @@ class Stage {
 
   //Metodo de ataque
   doAttack(attacking, attacked) {
-    let actualAttack = 0;
+
+    return new Promise(resolve => {
+      this.Log.addMessage(`${attacking.name} está atacando!`);
+      let actualAttack = 0;
     let actualDefense = 0;
-    // console.log(`${attacking.name} está atacando ${attacked.name}`);
     if (attacking.life <= 0 || attacked.life <= 0) {
       this.Log.addMessage(`morto`);
+      resolve();
       return;
     }
     let rollDice = this.rollDice(6);
@@ -142,7 +146,17 @@ class Stage {
       `${attacked.name} esta defendendo com: ${actualDefense} de defesa`
     );
 
+    setTimeout(() => {
+      if(attacked.life <= 0){
+        this.log.addMessage(`${attacked.name} está morto!`)
+      }
+      resolve();
+    }, 300);
+
     this.update();
+
+    });
+    
   }
 
   rollDice(lados) {
