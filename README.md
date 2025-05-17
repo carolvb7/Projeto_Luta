@@ -1,2 +1,4 @@
 # Projeto_Luta
-Simples Projeto para a compreensão de JavaScript
+Projeto feito para o Seminario de Programação Web
+
+Feito por: Eduardo, Ana Carolina e 

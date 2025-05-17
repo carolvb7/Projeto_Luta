@@ -4,42 +4,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./assets/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="./assets/css/style-index.css">
   <title>Fighter</title>
 </head>
 
 <body>
-  <div class="fightarea">
-    <div id="char">
-      <div class="lifebar">
-        <div class="bar" style="width: 10%;"></div>
-        <strong class="name">name</strong>
-        <div>
-          <button class="attackButton">Atacar</button>
-        </div>
-      </div>
+  <h1 class="text-center text-3xl">Bem-vindo guerreiro! ⚔️</h1>
+  <div class="container bg-gray-200">
+    <h1 class="text-black-600 text-200">Escolha seu personagem!</h1>
+    <div class="personagens" >
+      <div class="Cavalheiro">Cavalheiro</div>
+      <div class="Mago">Mago</div>
+      <div class="Arqueiro">Arqueiro</div>
     </div>
-    <div id="monster">
-      <div class="lifebar">
-        <div class="bar" style="width: 10%;"></div>
-        <strong class="name">name</strong>
-        <div>
-          <button class="attackButton">Atacar</button>
-        </div>
-      </div>
-    </div>
+
+    <a href="./telaBatalha.html" class="botao-batalha">Começar batalha</a>
+    <script src="Script-index.js"></script>
   </div>
-
-  <ul class="log"></ul>
-
-
-
-
-
-
-
-  <script src="./assets/js/classes.js"></script>
-  <script src="./assets/js/script.js"></script>
 </body>
 
 </html>

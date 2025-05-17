@@ -72,12 +72,13 @@ class Stage {
       .querySelector(".attackButton")
       .addEventListener("click", () =>
         this.doAttack(this.fighter1, this.fighter2)
+        .then(() => this.doAttack(this.fighter2, this.fighter1))
       );
-    this.fighter2El
-      .querySelector(".attackButton")
-      .addEventListener("click", () =>
-        this.doAttack(this.fighter2, this.fighter1)
-      );
+    // this.fighter2El
+    //   .querySelector(".attackButton")
+    //   .addEventListener("click", () =>
+    //     this.doAttack(this.fighter2, this.fighter1)
+    //   );
   }
 
   update() {
@@ -98,6 +99,7 @@ class Stage {
     this.fighter2El.querySelector(".bar").style.width = `${f2pct}%`;
   }
 
+  //Metodo de ataque
   doAttack(attacking, attacked) {
     let actualAttack = 0;
     let actualDefense = 0;

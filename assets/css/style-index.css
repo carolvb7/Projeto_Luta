@@ -1,0 +1,63 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container {
+    margin: auto;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.personagens {
+    display: flex;          
+    gap: 10px;              
+  }
+  
+  .perso {
+    background: #f0f0f0;    
+    padding: 10px;         
+    border: 1px solid #196633; 
+  }
+
+  .Cavalheiro, .Mago, .Arqueiro {
+    padding: 10px;
+    border: 1px solid #196633;
+    color: white;
+    text-align: center;
+  }
+  
+  .Cavalheiro {
+    background: #03188d; /* Azul */
+  }
+  
+  .Mago {
+    background: #4B0082; /* Roxo  */
+  }
+  
+  .Arqueiro {
+    background: #228B22; /* Verde  */
+  }
+
+.botao-batalha {
+    display: block; 
+    width: 200px; 
+    padding: 12px 25px;
+    background: #d6140d; 
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0 auto; 
+    text-decoration: none; 
+  }
+  
+  .botao-batalha:hover {
+    background: #c9302c;
+    transform: scale(1.05);
+  }
