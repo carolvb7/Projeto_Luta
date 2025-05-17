@@ -1,63 +1,79 @@
-*{
+:root {
+    --azul-heroi: #2563eb;
+    --roxo-mago: #7c3aed;
+    --verde-arqueiro: #16a34a;
+    --vermelho-batalha: #dc2626;
+  }
+  
+  /* Reset */
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-.container {
-    margin: auto;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.personagens {
-    display: flex;          
-    gap: 10px;              
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../img/bg-img.png')
   }
   
-  .perso {
-    background: #f0f0f0;    
-    padding: 10px;         
-    border: 1px solid #196633; 
-  }
-
-  .Cavalheiro, .Mago, .Arqueiro {
-    padding: 10px;
-    border: 1px solid #196633;
-    color: white;
-    text-align: center;
-  }
-  
-  .Cavalheiro {
-    background: #03188d; /* Azul */
-  }
-  
-  .Mago {
-    background: #4B0082; /* Roxo  */
-  }
-  
-  .Arqueiro {
-    background: #228B22; /* Verde  */
-  }
-
-.botao-batalha {
-    display: block; 
-    width: 200px; 
-    padding: 12px 25px;
-    background: #d6140d; 
-    color: white;
-    text-align: center;
-    border: none;
-    border-radius: 5px;
+  /* Botões de personagem */
+  .personagem {
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
     font-weight: bold;
+    color: white;
+    min-width: 120px;
+    transition: all 0.3s ease;
     cursor: pointer;
-    margin: 0 auto; 
-    text-decoration: none; 
+    border: none;
+    outline: none;
   }
   
-  .botao-batalha:hover {
-    background: #eb1109;
-    transform: scale(1.05);
+  .cavalheiro {
+    background-color: var(--azul-heroi);
   }
+  
+  .mago {
+    background-color: var(--roxo-mago);
+  }
+  
+  .arqueiro {
+    background-color: var(--verde-arqueiro);
+  }
+  
+  .personagem:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .personagem.selecionado {
+    outline: 4px solid #facc15; /* amarelo */
+    outline-offset: 2px;
+  }
+  
+  /* Botão de batalha */
+  .botao-batalha {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: var(--vermelho-batalha);
+    color: white;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    transition: 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .botao-batalha:hover:not(.disabled) {
+    background-color: #b91c1c;
+    transform: scale(1.03);
+  }
+  
+  .botao-batalha.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    filter: grayscale(100%);
+  }
+  

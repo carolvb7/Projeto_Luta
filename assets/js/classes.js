@@ -36,11 +36,31 @@ class Sorcerer extends Character {
   }
 }
 
+class Arrow extends Character {
+  constructor(name) {
+    super(name);
+    this.life = 100;
+    this.attack = 8;
+    this.defense = 2;
+    this.maxLife = this.life;
+  }
+}
+
 class LittleMonster extends Character {
   constructor() {
     super("Little Monster");
     this.life = 40;
     this.attack = 4;
+    this.defense = 6;
+    this.maxLife = this.life;
+  }
+}
+
+class MediunmMonster extends Character {
+  constructor() {
+    super("Little Monster");
+    this.life = 80;
+    this.attack = 8;
     this.defense = 6;
     this.maxLife = this.life;
   }
@@ -68,18 +88,41 @@ class Stage {
   start() {
     this.update();
 
-    this.fighter1El
-      .querySelector(".attackButton")
-      .addEventListener("click", () =>
-        this.doAttack(this.fighter1, this.fighter2)
-      .then(() => {
-        if(this.fighter2.life > 0) {
-          return this.doAttack(this.fighter2, this.fighter1);
-        } else {
-          return Promise.resolve();
-        }
-      })
-      );
+    // this.fighter1El
+    //   .querySelector(".attackButton")
+    //   .addEventListener("click", () =>
+    //     this.doAttack(this.fighter1, this.fighter2)
+    //   .then(() => {
+    //     if(this.fighter2.life > 0) {
+    //       return this.doAttack(this.fighter2, this.fighter1);
+    //     } else {
+    //       return Promise.resolve();
+    //     }
+    //   })
+    //   );
+
+        this.fighter1El
+    .querySelector(".attackButton")
+    .addEventListener("click", async () => {
+    await this.doAttack(this.fighter1, this.fighter2);
+    if (this.fighter2.life <= 0) {
+              this.Log.addMessage(`${this.fighter2.name} foi derrotado!`);
+              // Create a new random monster
+              const newMonster = Math.random() < 0.5 ? new LittleMonster() : new MediunmMonster();
+              this.fighter2 = newMonster;
+              this.Log.addMessage(`Um novo ${this.fighter2.name} apareceu!`);
+    this.update(); // Update UI for the new monster
+    }
+
+    if (this.fighter2.life > 0) {
+    await this.doAttack(this.fighter2, this.fighter1);
+    if (this.fighter1.life <= 0) {
+    this.Log.addMessage(`${this.fighter1.name} foi derrotado!`);
+                // Handle game over for player
+    }
+    }
+    });
+
   }
 
   update() {

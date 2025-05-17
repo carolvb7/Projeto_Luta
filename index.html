@@ -1,27 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <link rel="stylesheet" href="./assets/css/style-index.css">
-  <title>Fighter</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./assets/css/style-index.css" />
+  <title>Fighter - Escolha seu Personagem</title>
 </head>
 
-<body>
-  <h1 class="text-center text-3xl">Bem-vindo guerreiro! ⚔️</h1>
-  <div class="container bg-gray-200">
-    <h1 class="text-black-600 text-200">Escolha seu personagem!</h1>
-    <div class="personagens" >
-      <div class="Cavalheiro">Cavalheiro</div>
-      <div class="Mago">Mago</div>
-      <div class="Arqueiro">Arqueiro</div>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center p-4">
+  <header class="mb-8 text-center">
+    <h1 class="text-3xl font-bold text-red-50 mb-2">Bem-vindo guerreiro! ⚔️</h1>
+    <h2 class="text-xl text-red-50">Escolha seu personagem!</h2>
+  </header>
+
+  <main class="container bg-white rounded-lg shadow-md p-6 w-full max-w-md">
+    <div class="personagens flex justify-center gap-4 mb-6 flex-wrap">
+      <button class="personagem cavalheiro">Cavalheiro</button>
+      <button class="personagem mago">Mago</button>
+      <button class="personagem arqueiro">Arqueiro</button>
     </div>
 
-    <a href="./telaBatalha.html" class="botao-batalha">Começar batalha</a>
-    <script src="Script-index.js"></script>
-  </div>
-</body>
+    <a href="#" class="botao-batalha disabled">Começar batalha</a>
+  </main>
 
+  <script src="./assets/js/Script-index.js"></script>
+</body>
 </html>

@@ -1,13 +1,26 @@
 let log = new Log(document.querySelector(".log"));
 
-let char = new Knight("Juguerbal");
+let char;
 
-// console.log('Mago: '+char.name);
-// console.log('Sua vida: '+char.life);
-// console.log('Sua força é: '+char.attack);
+// Read the 'personagem' query parameter from the URL
+const urlParams = new URLSearchParams(window.location.search);
+const personagemEscolhido = urlParams.get('personagem');
+
+
+switch (personagemEscolhido) {
+  case 'Mago':
+    char = new Sorcerer("Mago");
+    break;
+  case 'Arqueiro':
+    char = new Arrow("Arqueiro"); 
+    break;
+  case 'Cavaleiro':
+  default: 
+    char = new Knight("Cavaleiro");
+    break;
+}
 
 let Monster = new LittleMonster();
-// console.log(Monster.name)
 
 const stage = new Stage(
   char,
@@ -18,5 +31,3 @@ const stage = new Stage(
 );
 
 stage.start();
-
-// console.log(Math.floor(Math.random() * 7))
